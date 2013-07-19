@@ -10,5 +10,34 @@ function log(msg)
  logFile.close()
 end 
  
-function checkPass(user, pass)
+local function checkPass(user, pass)
+ if not fs.exists(accountsFile..user) then
+  return "no User"
+ else
+  passFile = fs.open(acountsFile..user.."/.userData", "r")
+  realPass = passFile.readLine()
+  if realPass == pass then
+   return "correct"
+  else
+   return "wrong"
+  end
+ end
+end
+
+local function userLogin(loginID)
+ rednet.send(loginID, "sendUser")
+ id, userName = rednet.receive(0.5)
+ if id == loginID and userName ~= nil then
+  rednet.send(loginID, "sendPass")
+  id , passWord = rednet.receive(0.5)
+  if id == loginID and passWord ~= nil then
+   status = checkPass( userName, passWord)
+   return status
+  else
+   return "no reaction"
+  end
+ else
+  return "no reaction"
+ end
+end  
  
