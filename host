@@ -1,7 +1,7 @@
 --test test test
 --cloud system's host made by oedze
 --check version with karelmikie3 his updater idea
-version = "1.3"
+version = "1.2"
 response = http.get("https://raw.github.com/oedze/cloud/master/version")
 newVersion = response.readAll()
 if newVersion ~= version then
