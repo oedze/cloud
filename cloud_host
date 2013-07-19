@@ -3,6 +3,8 @@
 logFileDir = "/cloudDir/log"
 accountsFile = "/cloudDir/accounts/"
 
+loggedIN = {}
+
 function log(msg)
  print(msg)
  logFile = fs.open(logFileDir, "a")
@@ -32,6 +34,9 @@ local function userLogin(loginID)
   id , passWord = rednet.receive(0.5)
   if id == loginID and passWord ~= nil then
    status = checkPass( userName, passWord)
+   if status == "correct" then 
+    loggedIN[loginID] = userName
+   end 
    return status
   else
    return "no reaction"
@@ -40,4 +45,35 @@ local function userLogin(loginID)
   return "no reaction"
  end
 end  
+
+function userUpload(uploadID)
+ rednet.send(uploadID, "sendFileName")
+ id, fileName = rednet.receive(0.5)
+ if id == uploadID and fileName ~= nil then
+  if fileName == "startup" or fileName == "Startup" then
+   return "no startup"
+  end  
+  rednet.send(uploadID, "sendFileData")
+  id, fileData = rednet.receive(2)
+  if id == uploadID and fileData ~= nil then
+   if loggedIN[uploadID] ~= nil then
+   uploadFile = fs.open(accountsFile..loggedIN[uploadID].."/"..fileName, "a")
+   uploadFile.write(fileData)
+   uploadFIle.close()
+   loggedIN[uploadID] = nil
+   return "done"
+  else
+   loggedIN[uploadID] = nil
+   return "noLogin"
+  end
+ else
+  loggedIN[uploadID] = nil
+  return "no reaction"
+ end
+end  
+   
+    
+    
+   
+  
  
