@@ -1,1 +1,22 @@
-test
+--cloud system's host made by oedze
+--check version with karelmikie3 his updater idea
+version = "1.1"
+response = http.get("https://raw.github/oedze/cloud/master/version")
+newVersion = responge.readAll()
+if newVersion ~= version then
+ shell.run("cloudDir/updater")
+end
+ 
+ 
+os.loadAPI("cloud_host")
+while true do
+ requestID, msg = rednet.receive()
+ cloud_host.log("loginID = "..loginID)
+ if msg == "cloudLogin" then
+  cloud_host.log("msg == cloudlogin")
+  status = cloud_host.userLogin(requestID)
+  cloud_host.log("person logged in")
+  print(status)
+  cloud_host.log("printed status")
+ end
+end
