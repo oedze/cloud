@@ -1,0 +1,48 @@
+--api for use of the client's cloud made by oedze
+ 
+hostID = 1803
+encryptFile = "/cloudDir/encrypt"
+ 
+os.loadAPI(encryptFile)
+ 
+function clear()
+ term.clear()
+ term.setCursorPos(1,1)
+end
+ 
+function noHost()
+ clear()
+ error("Sorry, but your host didnt respond, try again later.")
+end
+ 
+ 
+function login(user, pass)
+ encPass = encrypt.encrypt(pass, "123cloudSERVICEpassword321")
+ rednet.send(hostID, "cloudLogin")
+ print("sended request")
+ id , msg = rednet.receive(0.5)
+ print("received message")
+ if id == hostID and msg == "sendUser" then
+  print("message is sendUser")
+  rednet.send(hostID, user)
+  print("sended username")
+  id, msg = rednet.receive(0.5)
+  if id == hostID and msg == "sendPass" then
+   print("received sendPass")
+   rednet.send(hostID, encPass)
+   print("sended password")
+   id, status = rednet.receive(2)
+   print("received status")
+   if status ~= nil and id == hostID then
+    return status
+   else
+    return "no host"
+   end
+  else
+   return "no host"
+  end
+ else
+  print(id)
+  return "no host"
+ end
+end
