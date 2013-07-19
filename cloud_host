@@ -1,0 +1,5 @@
+-- this is the api used for oedze his cloud host
+
+
+function log(msg)
+ print(msg)
