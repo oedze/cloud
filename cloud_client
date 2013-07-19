@@ -46,3 +46,26 @@ function login(user, pass)
   return "no host"
  end
 end
+
+function upload(filePath)
+ rednet.send(hostID, "cloudUpload")
+ id, msg = rednet.receive(0.5)
+ if id == hostID and msg == "sendFileName" then
+  rednet.send(hostID, fs.getName(filePath))
+  id, msg = rednet.receive(0.5)
+  if id == hostID and msg == "sendFileData" then
+   file = fs.open(filePath, "r")
+   userFileData = file.readAll()
+   file.close()
+   rednet.send(hostID, userFileData)
+   status = rednet.receive(2)
+   return status
+  else
+   return "no Host"
+  end
+ else
+  return "no Host"
+ end
+end 
+
+ 
