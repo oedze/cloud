@@ -1,0 +1,9 @@
+--client side of oedze his cloud system
+ 
+rednet.open("top")
+os.loadAPI("cloud_client")
+ 
+print("trying to login")
+status = cloud_client.login("oedze", "oedze")
+ 
+print(status)
