@@ -3,3 +3,8 @@
 
 function log(msg)
  print(msg)
+ logFile = fs.open(logFileDir, "a")
+ logFile.writeLine(msg)
+ logFile.close()
+end 
+ 
