@@ -57,21 +57,21 @@ function userUpload(uploadID)
   id, fileData = rednet.receive(2)
   if id == uploadID and fileData ~= nil then
    if loggedIN[uploadID] ~= nil then
-   uploadFile = fs.open(accountsFile..loggedIN[uploadID].."/"..fileName, "a")
-   uploadFile.write(fileData)
-   uploadFIle.close()
-   loggedIN[uploadID] = nil
-   return "done"
+    uploadFile = fs.open(accountsFile..loggedIN[uploadID].."/"..fileName, "a")
+    uploadFile.write(fileData)
+    uploadFIle.close()
+    loggedIN[uploadID] = nil
+    return "done"
+   else
+    loggedIN[uploadID] = nil
+    return "noLogin"
+   end
   else
    loggedIN[uploadID] = nil
-   return "noLogin"
+   return "no reaction"
   end
- else
-  loggedIN[uploadID] = nil
-  return "no reaction"
- end
-end  
-   
+ end  
+end   
     
     
    
