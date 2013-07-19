@@ -1,5 +1,7 @@
 -- this is the api used for oedze his cloud host
 
+logFileDir = "/cloudDir/log"
+accountsFile = "/cloudDir/accounts/"
 
 function log(msg)
  print(msg)
@@ -7,4 +9,6 @@ function log(msg)
  logFile.writeLine(msg)
  logFile.close()
 end 
+ 
+function checkPass(user, pass)
  
