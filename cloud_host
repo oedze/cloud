@@ -89,7 +89,7 @@ function userDownload(downloadID)
      return "completed"
     else
      loggedIN[downloadID] = nil
-     return "no reaction
+     return "no reaction"
     end
    else
     loggedIN[downloadID] = nil
