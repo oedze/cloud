@@ -3,7 +3,33 @@
 rednet.open("top")
 os.loadAPI("cloud_client")
  
-print("trying to login")
-status = cloud_client.login("oedze", "oedze")
- 
+
+function printUsage()
+ print("Usage:")
+ print("Client upload [filePath]")
+ print("Client download [fileName]")
+end 
+
+
+tArgs = { ... } 
+if #tArgs < 2 then
+ printUsage()
+ return
+end 
+
+
+cloud_client.clear()
+print("Whats your Username?")
+userName = read()
+print("Whats your password")
+passWord = read("*")
+
+status = cloud_client.login(userName, passWord)
+
+if tArgs[1] == "upload" then
+ status = cloud_host.upload(tArgs[2])
+ print(status)
+elseif tArgs[1] == "download" then 
+ status = 
+
 print(status)
