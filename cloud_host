@@ -73,6 +73,19 @@ function userUpload(uploadID)
  end  
 end   
     
+function userDownload(downloadID)
+ rednet.send(downloadID, "sendFileName")
+ id, fileName = rednet.receive(3)
+ if id == downloadID and fileName ~= nil then
+  if loggedIN[downloadID] ~= nil then
+   if fs.exists(accountsFile..loggedIN[downloadID].."/"..fileName) then
+    file = fs.open(accountsFile..loggedIN[downloadID].."/"..fileName, "r")
+    fileData = file.readAll()
+    file.close()
+    rednet.send(downloadID, fileData)
+    id, status = rednet.receive(5)
+    if id == downloadID and status ~= "done" then
+     
     
    
   
