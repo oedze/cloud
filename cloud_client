@@ -68,4 +68,27 @@ function upload(filePath)
  end
 end 
 
+function download(fileName )
+ rednet.send(hostID, "cloudDownload")
+ id, msg = rednet.receive(0.5)
+ if id == hostID and msg == "sendFileName" then
+  rednet.send(hostID, fileName)
+  id, fileData = rednet.receive(5)
+  if id == hostID and fileData == "not exists" then
+   return "not exists"
+  elseif id == hostID and fileData == "noLogin" 
+   return 'noLogin"
+  elseif id == hostID and fileData ~= nil then
+   file = fs.open(fileName, "a")
+   file.write(fileData)
+   file.close()
+   rednet.send(hostID, "completed")
+  else
+   return "no Host"
+  end
+ else
+  return "no Host"
+ end
+end 
+   
  
