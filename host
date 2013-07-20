@@ -13,12 +13,19 @@ os.loadAPI("cloud_host")
 cloud_host.log("running host")
 while true do
  requestID, msg = rednet.receive()
- cloud_host.log("loginID = "..loginID)
+ cloud_host.log("requestID = "..requestID)
  if msg == "cloudLogin" then
   cloud_host.log("msg == cloudlogin")
   status = cloud_host.userLogin(requestID)
   cloud_host.log("person logged in")
   print(status)
   cloud_host.log("printed status")
- end
+ elseif msg == "cloudUpload" then
+  status = userUpload(requestID)
+  cloud_host.log("status: "..status)
+  rednet.send(requestID, status)
+ elseif msg == "cloudDownload" then
+  status = userDownload(requestID)
+  cloud_host.log("status: "..status)
+ end 
 end
