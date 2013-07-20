@@ -84,7 +84,28 @@ function userDownload(downloadID)
     file.close()
     rednet.send(downloadID, fileData)
     id, status = rednet.receive(5)
-    if id == downloadID and status ~= "done" then
+    if id == downloadID and status ~= "completed" then
+     loggedIN[downloadID] = nil
+     return "completed"
+    else
+     loggedIN[downloadID] = nil
+     return "no reaction
+    end
+   else
+    loggedIN[downloadID] = nil
+    rednet.send(downloadID, "not exists")
+    return "not exists"
+   end 
+  else
+   loggedIN[downloadID] = nil
+   rednet.send(downloadID, "noLogin")
+   return "noLogin"
+  end 
+ else
+  loggedIN[downloadID] = nil
+  return "no reaction"
+ end
+end  
      
     
    
