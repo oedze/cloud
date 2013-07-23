@@ -26,7 +26,7 @@ local function checkPass(user, pass)
  end
 end
 
-local function userLogin(loginID)
+function userLogin(loginID)
  log("got login request")
  rednet.send(loginID, "sendUser")
  log("sended sendUser")
