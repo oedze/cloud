@@ -12,6 +12,7 @@ end
 os.loadAPI("cloud_host")
 cloud_host.log("running host")
 while true do
+ print("clock")
  requestID, msg = rednet.receive()
  print(requestID.." "..msg)
  cloud_host.log("requestID = "..requestID)
