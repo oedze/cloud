@@ -91,6 +91,7 @@ function download(fileName )
    file.write(fileData)
    file.close()
    rednet.send(hostID, "completed")
+   return "done"
   else
    return "no Host"
   end
