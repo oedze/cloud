@@ -1,6 +1,16 @@
 --client side of oedze his cloud system
  
 rednet.open("top")
+
+version = "1.4.1"
+response = http.get("https://raw.github.com/oedze/cloud/master/version")
+newVersion = response.readAll()
+if newVersion ~= version then
+ shell.run("cloudDir/updater")
+end
+
+
+
 os.loadAPI("cloud_client")
  
 
