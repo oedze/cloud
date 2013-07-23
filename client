@@ -37,7 +37,7 @@ passWord = read("*")
 status = cloud_client.login(userName, passWord)
 
 if tArgs[1] == "upload" then
- status = cloud_host.upload(tArgs[2])
+ status = cloud_host.upload(fs.getName(tArgs[2]))
  print(status)
 elseif tArgs[1] == "download" then 
  status = download(tArgs[2])
