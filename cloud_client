@@ -3,19 +3,10 @@
 hostID = 1803
 encryptFile = "/cloudDir/encrypt"
  
-version = "1.4"
-response = http.get("https://raw.github.com/oedze/cloud/master/version")
-newVersion = response.readAll()
-if newVersion ~= version then
- shell.run("cloudDir/updater")
-end
-
-
 
 
 
 os.unloadAPI(encryptFile)
-
 os.loadAPI(encryptFile)
  
 function clear()
