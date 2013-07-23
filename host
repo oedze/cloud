@@ -13,6 +13,7 @@ os.loadAPI("cloud_host")
 cloud_host.log("running host")
 while true do
  requestID, msg = rednet.receive()
+ print(requestID.." "..msg)
  cloud_host.log("requestID = "..requestID)
  if msg == "cloudLogin" then
   cloud_host.log("msg == cloudlogin")
