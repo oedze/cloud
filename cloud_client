@@ -3,6 +3,17 @@
 hostID = 1803
 encryptFile = "/cloudDir/encrypt"
  
+version = "1.4"
+response = http.get("https://raw.github.com/oedze/cloud/master/version")
+newVersion = response.readAll()
+if newVersion ~= version then
+ shell.run("cloudDir/updater")
+end
+
+
+
+
+
 os.loadAPI(encryptFile)
  
 function clear()
@@ -63,7 +74,9 @@ function upload(filePath)
   else
    return "no Host"
   end
- else
+ elseif id == hostID and msg == "no startup" then
+  return "no startup"
+ else 
   return "no Host"
  end
 end 
