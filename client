@@ -2,7 +2,7 @@
  
 rednet.open("top")
 
-version = "1.4.1"
+version = "1.5.0"
 response = http.get("https://raw.github.com/oedze/cloud/master/version")
 newVersion = response.readAll()
 if newVersion ~= version then
