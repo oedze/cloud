@@ -70,6 +70,9 @@ function userUpload(uploadID)
    loggedIN[uploadID] = nil
    return "no reaction"
   end
+ else
+  loggedIN[uploadID] = nil
+  return "no reaction"
  end  
 end   
     
