@@ -16,7 +16,7 @@ local function checkPass(user, pass)
  if not fs.exists(accountsFile..user) then
   return "no User"
  else
-  passFile = fs.open(acountsFile..user.."/.userData", "r")
+  passFile = fs.open(accountsFile..user.."/.userData", "r")
   realPass = passFile.readLine()
   if realPass == pass then
    return "correct"
@@ -62,7 +62,7 @@ function userUpload(uploadID)
    if loggedIN[uploadID] ~= nil then
     uploadFile = fs.open(accountsFile..loggedIN[uploadID].."/"..fileName, "a")
     uploadFile.write(fileData)
-    uploadFIle.close()
+    uploadFile.close()
     loggedIN[uploadID] = nil
     return "done"
    else
