@@ -39,6 +39,7 @@ function login(user, pass)
    id, status = rednet.receive(2)
    print("received status")
    if status ~= nil and id == hostID then
+    print(status)
     return status
    else
     return "no host"
