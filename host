@@ -15,7 +15,7 @@ rednet.open("top")
 
 cloud_host.log("running host")
 while true do
- cloud_host.log("---------------------------------------------------------")
+ cloud_host.log("---------------------------------------------------")
  requestID, msg = rednet.receive()
  print(requestID.." "..msg)
  cloud_host.log("requestID = "..requestID)
