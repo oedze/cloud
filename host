@@ -15,16 +15,14 @@ rednet.open("top")
 
 cloud_host.log("running host")
 while true do
- print("clock")
+ cloud_host.log("---------------------------------------------------------")
  requestID, msg = rednet.receive()
  print(requestID.." "..msg)
  cloud_host.log("requestID = "..requestID)
  if msg == "cloudLogin" then
-  cloud_host.log("msg == cloudlogin")
   status = cloud_host.userLogin(requestID)
   cloud_host.log("person logged in")
-  print(status)
-  cloud_host.log("printed status")
+  print("status: "..status)
  elseif msg == "cloudUpload" then
   status = cloud_host.userUpload(requestID)
   cloud_host.log("status: "..status)
