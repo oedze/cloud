@@ -10,6 +10,9 @@ end
  
  
 os.loadAPI("cloud_host")
+rednet.open("top")
+
+
 cloud_host.log("running host")
 while true do
  print("clock")
