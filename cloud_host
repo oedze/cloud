@@ -27,9 +27,12 @@ local function checkPass(user, pass)
 end
 
 local function userLogin(loginID)
+ log("got login request")
  rednet.send(loginID, "sendUser")
+ log("sended sendUser")
  id, userName = rednet.receive(0.5)
  if id == loginID and userName ~= nil then
+  log("got message "..userName)
   rednet.send(loginID, "sendPass")
   id , passWord = rednet.receive(0.5)
   if id == loginID and passWord ~= nil then
