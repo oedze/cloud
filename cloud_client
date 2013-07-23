@@ -64,7 +64,7 @@ function upload(filePath)
    userFileData = file.readAll()
    file.close()
    rednet.send(hostID, userFileData)
-   status = rednet.receive(2)
+   id, status = rednet.receive(2)
    return status
   else
    return "no Host"
