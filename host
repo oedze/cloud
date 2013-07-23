@@ -26,7 +26,7 @@ while true do
   print(status)
   cloud_host.log("printed status")
  elseif msg == "cloudUpload" then
-  status = userUpload(requestID)
+  status = cloud_host.userUpload(requestID)
   cloud_host.log("status: "..status)
   rednet.send(requestID, status)
  elseif msg == "cloudDownload" then
