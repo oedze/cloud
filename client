@@ -10,7 +10,7 @@ if newVersion ~= version then
 end
 
 
-
+os.unloadAPI("cloud_client")
 os.loadAPI("cloud_client")
  
 
