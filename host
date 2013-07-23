@@ -1,7 +1,7 @@
 --test test test
 --cloud system's host made by oedze
 --check version with karelmikie3 his updater idea
-version = "1.4.2"
+version = "1.5.0"
 response = http.get("https://raw.github.com/oedze/cloud/master/version")
 newVersion = response.readAll()
 if newVersion ~= version then
@@ -26,11 +26,11 @@ while true do
   print(status)
   cloud_host.log("printed status")
  elseif msg == "cloudUpload" then
-  status = cloud_host.userUpload(requestID)
+  status = userUpload(requestID)
   cloud_host.log("status: "..status)
   rednet.send(requestID, status)
  elseif msg == "cloudDownload" then
-  status = cloud_host.userDownload(requestID)
+  status = userDownload(requestID)
   cloud_host.log("status: "..status)
  end 
 end
