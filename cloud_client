@@ -89,7 +89,7 @@ function download(fileName )
   id, fileData = rednet.receive(5)
   if id == hostID and fileData == "not exists" then
    return "not exists"
-  elseif id == hostID and fileData == "noLogin" 
+  elseif id == hostID and fileData == "noLogin" then
    return 'noLogin"
   elseif id == hostID and fileData ~= nil then
    file = fs.open(fileName, "a")
