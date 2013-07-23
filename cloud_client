@@ -24,7 +24,7 @@ function login(user, pass)
  encPass = encrypt.encrypt(pass, "123cloudSERVICEpassword321")
  rednet.send(hostID, "cloudLogin")
  print("sended request")
- id , msg = rednet.receive(0.5)
+ id , msg = rednet.receive(1)
  print("received message")
  print(msg)
  if id == hostID and msg == "sendUser" then
