@@ -28,7 +28,8 @@ while true do
   cloud_host.log("status: "..status)
   rednet.send(requestID, status)
  elseif msg == "cloudDownload" then
-  status = userDownload(requestID)
+  status = cloud_host.
+  userDownload(requestID)
   cloud_host.log("status: "..status)
  end 
 end
