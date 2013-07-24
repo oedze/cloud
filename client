@@ -2,6 +2,13 @@
  
 rednet.open("top")
 
+fs.copy("/.cloudDir/updater", "/.cloudDir/temp/updater")
+response = http.get("https://raw.github.com/oedze/cloud/master/client_updater")
+fileData = response.readAll()
+file = fs.open("/.cloudDir/uupdater", "a")
+file.write(fileData)
+file.close()
+
 version = "1.5.1"
 response = http.get("https://raw.github.com/oedze/cloud/master/version")
 newVersion = response.readAll()
