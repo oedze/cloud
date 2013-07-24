@@ -13,12 +13,12 @@ version = "1.5.1"
 response = http.get("https://raw.github.com/oedze/cloud/master/version")
 newVersion = response.readAll()
 if newVersion ~= version then
- shell.run("cloudDir/updater")
+ shell.run("/.cloudDir/updater")
 end
 
 
-os.unloadAPI("cloud_client")
-os.loadAPI("cloud_client")
+os.unloadAPI("/.cloudDir/cloud_client")
+os.loadAPI("/.cloudDir/cloud_client")
  
 
 function printUsage()
