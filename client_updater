@@ -1,12 +1,12 @@
-fs.copy("/client", "/cloudDir/temp/client")
-fs.copy("/cloud_client", "/cloudDir/temp/cloud_client")
+fs.copy("/cloud", "/.cloudDir/temp/cloud")
+fs.copy("/cloud_client", "/.cloudDir/temp/cloud_client")
  
 fs.delete("/client")
 fs.delete("/cloud_client")
  
 response = http.get("https://raw.github.com/oedze/cloud/master/client")
 fileData = response.readAll()
-clientFile = fs.open("/client", "a")
+clientFile = fs.open("/cloud", "a")
 clientFile.write(fileData)
 clientFile.close()
  
@@ -16,5 +16,5 @@ clientFile2 = fs.open("cloud_client", "a")
 clientFile2.write(fileData2)
 clientFile2.close()
  
-fs.delete("/cloudDir/temp/client")
+fs.delete("/cloudDir/temp/cloud")
 fs.delete("/cloudDir/temp/cloud_client")
