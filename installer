@@ -7,22 +7,7 @@ if fs.exists("/cloud") and fs.exits("/cloudDir") then
  return
 end
 
-print("do you want to put the cloud in a folder?: y/n")
-folder = read()
 
-if folder == "y" then
- print("in what folder do you want it?")
- folderF = read()
- if not fs.exists(folderF) then
-  fs.makeDir(folderF)
-  print("made folder")
- end
-end
-
-
-if folder == "n" then
- folderF = "/empty/.."
-end
 
 print("downloading")
 
@@ -38,9 +23,9 @@ fileData3 = response3.readAll()
 
 fs.makeDir("/cloudDir")
 
-file1 = fs.open(folderF.."/cloud", "a")
-file2 = fs.open(folderF.."/.cloudDir/cloud_client", "a")
-file3 = fs.open(folderF.."/.cloudDir/encrypt", "a")
+file1 = fs.open("/cloud", "a")
+file2 = fs.open("/.cloudDir/cloud_client", "a")
+file3 = fs.open("/.cloudDir/encrypt", "a")
 
 
 file1.write(fileData1)
